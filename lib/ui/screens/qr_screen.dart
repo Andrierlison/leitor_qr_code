@@ -4,6 +4,8 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:leitor_qr_code/admob.dart';
 import 'package:leitor_qr_code/ui/widgets/custom_button.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
@@ -21,11 +23,10 @@ class _QRViewScreenState extends State<QRScreen> {
 
   bool flashStatus = false;
 
+  BannerAd? _footerBanner;
+
   Widget _buildQrView(BuildContext context) {
-    double scanArea = (MediaQuery.of(context).size.width < 400 ||
-            MediaQuery.of(context).size.height < 400)
-        ? 150.0
-        : 300.0;
+    double scanArea = MediaQuery.of(context).size.width / 1.7;
 
     return QRView(
       key: qrKey,
@@ -79,6 +80,25 @@ class _QRViewScreenState extends State<QRScreen> {
     await Clipboard.setData(ClipboardData(text: result?.code.toString()));
   }
 
+  void _initScreen() async {
+    _footerBanner = BannerAd(
+      adUnitId: scanBannerAdId,
+      size: AdSize.fullBanner,
+      request: const AdRequest(),
+      listener: const BannerAdListener(),
+    );
+
+    if (_footerBanner != null) {
+      await _footerBanner!.load();
+    }
+  }
+
+  @override
+  void initState() {
+    _initScreen();
+    super.initState();
+  }
+
   @override
   void dispose() {
     controller?.dispose();
@@ -99,9 +119,9 @@ class _QRViewScreenState extends State<QRScreen> {
     return Scaffold(
       body: Column(
         children: <Widget>[
-          Expanded(flex: 3, child: _buildQrView(context)),
+          Expanded(flex: 4, child: _buildQrView(context)),
           Expanded(
-            flex: 1,
+            flex: 2,
             child: FittedBox(
               fit: BoxFit.contain,
               child: Column(
@@ -128,7 +148,7 @@ class _QRViewScreenState extends State<QRScreen> {
                       ),
                     ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       CustomButton(
                         label: flashStatus ? 'Flash ligado' : 'Flash desligado',
@@ -165,7 +185,9 @@ class _QRViewScreenState extends State<QRScreen> {
                 ],
               ),
             ),
-          )
+          ),
+          if (_footerBanner != null)
+            Expanded(flex: 1, child: AdWidget(ad: _footerBanner!)),
         ],
       ),
     );

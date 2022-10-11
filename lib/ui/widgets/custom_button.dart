@@ -20,7 +20,7 @@ class _CustomButtonState extends State<CustomButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(10),
+      margin: const EdgeInsets.all(5),
       padding: const EdgeInsets.all(6),
       child: ElevatedButton(
         style: const ButtonStyle(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:leitor_qr_code/admob.dart';
 import 'package:leitor_qr_code/ui/global_styles.dart';
 import 'package:leitor_qr_code/ui/screens/qr_screen.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -17,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _initScreen() async {
     _headerBanner = BannerAd(
-      adUnitId: 'ca-app-pub-3940256099942544/6300978111',
+      adUnitId: homeBannerAdId,
       size: AdSize.fullBanner,
       request: const AdRequest(),
       listener: const BannerAdListener(),
@@ -26,8 +27,6 @@ class _HomeScreenState extends State<HomeScreen> {
     if (_headerBanner != null) {
       await _headerBanner!.load();
     }
-
-    setState(() {});
   }
 
   Future<bool> _verifyCameraPermission() async {
