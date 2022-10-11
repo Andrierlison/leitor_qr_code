@@ -134,26 +134,19 @@ class _QRViewScreenState extends State<QRScreen> {
                         label: flashStatus ? 'Flash ligado' : 'Flash desligado',
                         onPressed: () => _toggleFlash(),
                       ),
-                      Container(
-                        margin: const EdgeInsets.all(8),
-                        child: ElevatedButton(
-                          onPressed: () async {
-                            await controller?.flipCamera();
-                            setState(() {});
-                          },
-                          child: FutureBuilder(
-                            future: controller?.getCameraInfo(),
-                            builder: (context, snapshot) {
-                              if (snapshot.data != null) {
-                                return Text(
-                                  'Camera ${describeEnum(snapshot.data!)}',
-                                );
-                              } else {
-                                return const Text('loading');
-                              }
+                      FutureBuilder(
+                        future: controller?.getCameraInfo(),
+                        builder: (context, snapshot) {
+                          return CustomButton(
+                            label: (snapshot.data != null)
+                                ? 'Camera ${describeEnum(snapshot.data!)}'
+                                : 'loading',
+                            onPressed: () async {
+                              await controller?.flipCamera();
+                              setState(() {});
                             },
-                          ),
-                        ),
+                          );
+                        },
                       ),
                       CustomButton(
                         label: 'Pausar',

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:leitor_qr_code/ui/global_styles.dart';
 
 class CustomButton extends StatefulWidget {
   final String label;
@@ -22,6 +23,9 @@ class _CustomButtonState extends State<CustomButton> {
       margin: const EdgeInsets.all(10),
       padding: const EdgeInsets.all(6),
       child: ElevatedButton(
+        style: const ButtonStyle(
+          backgroundColor: MaterialStatePropertyAll(customBlack),
+        ),
         onPressed: widget.onPressed,
         child: Row(
           children: [

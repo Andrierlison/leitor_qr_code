@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:leitor_qr_code/ui/global_styles.dart';
 import 'package:leitor_qr_code/ui/screens/qr_screen.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -8,12 +9,23 @@ void main() {
   MobileAds.instance.initialize();
 
   runApp(
-    const MaterialApp(
+    MaterialApp(
       showSemanticsDebugger: false,
       showPerformanceOverlay: false,
       debugShowCheckedModeBanner: false,
-      color: Colors.blue,
-      home: App(),
+      theme: ThemeData(
+        brightness: Brightness.light,
+        primaryColor: customBlack,
+        fontFamily: 'Roboto',
+        textTheme: const TextTheme(),
+        appBarTheme: const AppBarTheme(
+          color: customBlack,
+        ),
+        buttonTheme: const ButtonThemeData(
+          buttonColor: customBlack,
+        ),
+      ),
+      home: const App(),
     ),
   );
 }
@@ -137,6 +149,9 @@ class _AppState extends State<App> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
+                  style: const ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll(customBlack),
+                  ),
                   onPressed: () => _goToScan(context: context),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -150,8 +165,8 @@ class _AppState extends State<App> {
               ],
             ),
           ),
-          // if (_headerBanner != null)
-          // Expanded(flex: 1, child: AdWidget(ad: _headerBanner!)),
+          if (_headerBanner != null)
+            Expanded(flex: 1, child: AdWidget(ad: _headerBanner!)),
         ],
       ),
     );
