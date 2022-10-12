@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:leitor_qr_code/admob.dart';
+import 'package:leitor_qr_code/ui/global_styles.dart';
 import 'package:leitor_qr_code/ui/widgets/custom_button.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
@@ -23,6 +24,8 @@ class _QRViewScreenState extends State<QRScreen> {
 
   BannerAd? _footerBanner;
 
+  bool _isTextCopied = false;
+
   Widget _buildQrView(BuildContext context) {
     double scanArea = MediaQuery.of(context).size.width / 1.7;
 
@@ -40,22 +43,80 @@ class _QRViewScreenState extends State<QRScreen> {
     );
   }
 
+  Future<void> _modalWithResult() async {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (BuildContext context) {
+        return StatefulBuilder(
+          builder: (BuildContext context, StateSetter changer) {
+            return Padding(
+              padding: const EdgeInsets.all(10),
+              child: Wrap(
+                children: [
+                  Container(
+                    margin: const EdgeInsets.symmetric(vertical: 10),
+                    child: Text(
+                      result!.code!,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: customBlack,
+                      ),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CustomButton(
+                        label: _isTextCopied ? 'Copiado!' : 'Copiar',
+                        iconName: Icons.copy,
+                        onPressed: () {
+                          copyToClipBoard(changer);
+
+                          changer(() {});
+                        },
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
   void _onQRViewCreated(QRViewController controller) {
     setState(() {
       this.controller = controller;
     });
 
-    controller.scannedDataStream.listen((scanData) {
+    controller.scannedDataStream.listen((scanData) async {
       setState(() {
         result = scanData;
       });
+
+      if (result != null && result!.code!.isNotEmpty) {
+        if (result!.code!.length > 50) {
+          controller.pauseCamera();
+
+          return _modalWithResult();
+        } else {
+          controller.pauseCamera();
+        }
+      }
     });
+
+    controller.resumeCamera();
   }
 
   void _onPermissionSet(BuildContext context, QRViewController ctrl, bool p) {
     if (!p) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('no Permission')),
+        const SnackBar(content: Text('Sem permissão para acessar a câmera')),
       );
     }
   }
@@ -74,8 +135,20 @@ class _QRViewScreenState extends State<QRScreen> {
     }
   }
 
-  void copyToClipBoard() async {
+  Future<void> copyToClipBoard(setter) async {
     await Clipboard.setData(ClipboardData(text: result?.code.toString()));
+
+    if (mounted) {
+      setter(() {
+        _isTextCopied = true;
+      });
+
+      await Future.delayed(const Duration(seconds: 2));
+
+      setter(() {
+        _isTextCopied = false;
+      });
+    }
   }
 
   void _initScreen() async {
@@ -89,6 +162,8 @@ class _QRViewScreenState extends State<QRScreen> {
     if (_footerBanner != null) {
       await _footerBanner!.load();
     }
+
+    if (controller != null) controller!.resumeCamera();
   }
 
   @override
@@ -129,10 +204,14 @@ class _QRViewScreenState extends State<QRScreen> {
                     Row(
                       children: [
                         Text(
-                          result!.code ?? '',
+                          result!.code!.length > 30
+                              ? '${result!.code!.substring(0, 30)}...'
+                              : result!.code!,
                         ),
                         CustomButton(
-                            label: 'Copiar', onPressed: () => copyToClipBoard())
+                          label: _isTextCopied ? 'Copiado!' : 'Copiar',
+                          onPressed: () => copyToClipBoard(setState),
+                        )
                       ],
                     )
                   else

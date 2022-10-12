@@ -48,14 +48,14 @@ class _HomeScreenState extends State<HomeScreen> {
     return false;
   }
 
-  Future<void> _goToScan({required BuildContext context}) async {
-    await _verifyCameraPermission().then((value) {
-      if (value) {
-        return Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => const QRScreen()),
-        );
-      }
+  Future _goToScan({required BuildContext context}) async {
+    final hasPermission = await _verifyCameraPermission();
 
+    if (hasPermission) {
+      return Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => const QRScreen()),
+      );
+    } else {
       return showDialog(
         context: context,
         barrierDismissible: false,
@@ -99,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       );
-    });
+    }
   }
 
   Future<void> _rateModal({required BuildContext context}) {
