@@ -151,16 +151,17 @@ class _QRViewScreenState extends State<QRScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       CustomButton(
-                        label: flashStatus ? 'Flash ligado' : 'Flash desligado',
+                        label: '',
+                        iconName:
+                            flashStatus ? Icons.flash_on : Icons.flash_off,
                         onPressed: () => _toggleFlash(),
                       ),
                       FutureBuilder(
                         future: controller?.getCameraInfo(),
                         builder: (context, snapshot) {
                           return CustomButton(
-                            label: (snapshot.data != null)
-                                ? 'Camera ${describeEnum(snapshot.data!)}'
-                                : 'loading',
+                            label: '',
+                            iconName: Icons.cameraswitch_outlined,
                             onPressed: () async {
                               await controller?.flipCamera();
                               setState(() {});
@@ -169,13 +170,15 @@ class _QRViewScreenState extends State<QRScreen> {
                         },
                       ),
                       CustomButton(
-                        label: 'Pausar',
+                        label: '',
+                        iconName: Icons.pause,
                         onPressed: () async {
                           await controller?.pauseCamera();
                         },
                       ),
                       CustomButton(
-                        label: 'Continuar',
+                        label: '',
+                        iconName: Icons.play_arrow,
                         onPressed: () async {
                           await controller?.resumeCamera();
                         },
