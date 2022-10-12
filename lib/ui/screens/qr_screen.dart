@@ -154,7 +154,7 @@ class _QRViewScreenState extends State<QRScreen> {
   void _initScreen() async {
     _footerBanner = BannerAd(
       adUnitId: scanBannerAdId,
-      size: AdSize.fullBanner,
+      size: AdSize.largeBanner,
       request: const AdRequest(),
       listener: const BannerAdListener(),
     );
@@ -175,6 +175,7 @@ class _QRViewScreenState extends State<QRScreen> {
   @override
   void dispose() {
     controller?.dispose();
+    _footerBanner?.dispose();
     super.dispose();
   }
 

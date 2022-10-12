@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void _initScreen() async {
     _headerBanner = BannerAd(
       adUnitId: homeBannerAdId,
-      size: AdSize.fullBanner,
+      size: AdSize.largeBanner,
       request: const AdRequest(),
       listener: const BannerAdListener(),
     );
@@ -155,6 +155,12 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     _initScreen();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _headerBanner?.dispose();
+    super.dispose();
   }
 
   @override
