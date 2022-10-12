@@ -134,7 +134,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           'https://play.google.com/store/apps/details?id=com.andrierlison.leitor_qr_code';
                       bool canLaunch = await canLaunchUrl(Uri.parse(url));
 
-                      if (canLaunch) launchUrl(Uri.parse(url));
+                      if (canLaunch) {
+                        launchUrl(
+                          Uri.parse(url),
+                          mode: LaunchMode.externalApplication,
+                        );
+                      }
                     },
                   ),
                 ],
