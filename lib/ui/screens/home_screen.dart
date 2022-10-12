@@ -39,8 +39,6 @@ class _HomeScreenState extends State<HomeScreen> {
         cameraPermission.isLimited ||
         cameraPermission.isRestricted) {
       await Permission.camera.request();
-
-      return false;
     }
 
     cameraPermission = await Permission.camera.status;
