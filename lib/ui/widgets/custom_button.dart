@@ -30,7 +30,8 @@ class _CustomButtonState extends State<CustomButton> {
         child: Row(
           children: [
             Text(widget.label),
-            if (widget.iconName != null) Icon(widget.iconName)
+            if (widget.iconName != null) const SizedBox(width: 10),
+            if (widget.iconName != null) Icon(widget.iconName, size: 24)
           ],
         ),
       ),

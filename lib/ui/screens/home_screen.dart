@@ -3,7 +3,9 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:leitor_qr_code/admob.dart';
 import 'package:leitor_qr_code/ui/global_styles.dart';
 import 'package:leitor_qr_code/ui/screens/qr_screen.dart';
+import 'package:leitor_qr_code/ui/widgets/custom_button.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -102,6 +104,50 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  Future<void> _rateModal({required BuildContext context}) {
+    return showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (BuildContext context) {
+        return Padding(
+          padding: const EdgeInsets.all(10),
+          child: Wrap(
+            children: [
+              Container(
+                margin: const EdgeInsets.symmetric(vertical: 10),
+                child: const Text(
+                  'Sua opinião é muito importante, deixe sua avaliação sobre o nosso app para ele continuar melhorando!',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: customBlack,
+                  ),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CustomButton(
+                    label: 'Avaliar',
+                    iconName: Icons.shop_outlined,
+                    onPressed: () async {
+                      String url =
+                          'https://play.google.com/store/apps/details?id=com.andrierlison.leitor_qr_code';
+                      bool canLaunch = await canLaunchUrl(Uri.parse(url));
+
+                      if (canLaunch) launchUrl(Uri.parse(url));
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   @override
   void initState() {
     _initScreen();
@@ -111,7 +157,15 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(screenTitle)),
+      appBar: AppBar(
+        title: Text(screenTitle),
+        actions: [
+          IconButton(
+            onPressed: () => _rateModal(context: context),
+            icon: const Icon(Icons.favorite),
+          )
+        ],
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
