@@ -139,7 +139,7 @@ class _QRViewScreenState extends State<QRScreen> {
                     Container(
                       margin: const EdgeInsets.all(20),
                       child: const Text(
-                        'Escanei um codigo',
+                        'Escanei um código',
                         style: TextStyle(
                           fontSize: 30,
                         ),
