@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:leitor_qr_code/admob.dart';
 import 'package:leitor_qr_code/data/datasources/cache/delete_history_cache_datasource_imp.dart';
 import 'package:leitor_qr_code/data/datasources/cache/get_history_cache_datasource_imp.dart';
 import 'package:leitor_qr_code/data/repositories/delete_history_repository_imp.dart';
@@ -19,6 +21,8 @@ class HistoryScreen extends StatefulWidget {
 }
 
 class _HistoryScreenState extends State<HistoryScreen> {
+  BannerAd? _footerBanner;
+
   Future<void> _copyToClipboard({required String text}) async {
     await Clipboard.setData(ClipboardData(text: text));
 
@@ -174,6 +178,25 @@ class _HistoryScreenState extends State<HistoryScreen> {
     );
   }
 
+  void _initScreen() async {
+    _footerBanner = BannerAd(
+      adUnitId: scanBannerAdId,
+      size: AdSize.largeBanner,
+      request: const AdRequest(),
+      listener: const BannerAdListener(),
+    );
+
+    if (_footerBanner != null) {
+      await _footerBanner!.load();
+    }
+  }
+
+  @override
+  void initState() {
+    _initScreen();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return ScreenBackground(
@@ -192,7 +215,11 @@ class _HistoryScreenState extends State<HistoryScreen> {
           color: customWhite,
         ),
       ],
-      children: [_mountList()],
+      children: [
+        _mountList(),
+        if (_footerBanner != null)
+          Expanded(flex: 1, child: AdWidget(ad: _footerBanner!)),
+      ],
     );
   }
 }
