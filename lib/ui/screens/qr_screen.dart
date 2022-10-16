@@ -1,10 +1,14 @@
-import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:leitor_qr_code/admob.dart';
+import 'package:leitor_qr_code/data/datasources/cache/save_history_cache_datasource_imp.dart';
+import 'package:leitor_qr_code/data/repositories/save_history_repository_imp.dart';
+import 'package:leitor_qr_code/domain/entities/history_entity.dart';
+import 'package:leitor_qr_code/domain/usecases/save_history/save_history_usecase_imp.dart';
 import 'package:leitor_qr_code/ui/global_styles.dart';
+import 'package:leitor_qr_code/ui/screens/history_screen.dart';
 import 'package:leitor_qr_code/ui/widgets/custom_button.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -92,6 +96,20 @@ class _QRViewScreenState extends State<QRScreen> {
     );
   }
 
+  Future<void> _saveHistory(String name) async {
+    final SaveHistoryUseCaseImp saveHistoryUseCaseImp = SaveHistoryUseCaseImp(
+      SaveHistoryRepositoryImp(SaveHistoryCacheDataSourceImp()),
+    );
+
+    await saveHistoryUseCaseImp.call(
+      item: HistoryEntity(
+        name: name,
+        dateInsert: DateTime.now().toString(),
+        isFavorite: false,
+      ),
+    );
+  }
+
   void _onQRViewCreated(QRViewController controller) {
     setState(() {
       this.controller = controller;
@@ -103,6 +121,8 @@ class _QRViewScreenState extends State<QRScreen> {
       });
 
       if (result != null && result!.code!.isNotEmpty) {
+        await _saveHistory(result!.code!);
+
         if (result!.code!.length > 50) {
           controller.pauseCamera();
 
@@ -260,6 +280,17 @@ class _QRViewScreenState extends State<QRScreen> {
                         iconName: Icons.play_arrow,
                         onPressed: () async {
                           await controller?.resumeCamera();
+                        },
+                      ),
+                      CustomButton(
+                        label: '',
+                        iconName: Icons.history,
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const HistoryScreen(),
+                            ),
+                          );
                         },
                       ),
                     ],
