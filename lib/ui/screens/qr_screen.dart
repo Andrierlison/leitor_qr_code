@@ -127,17 +127,13 @@ class _QRViewScreenState extends State<QRScreen> {
   }
 
   Future<void> _toggleFlash() async {
-    try {
-      await controller?.toggleFlash();
+    await controller?.toggleFlash();
 
-      bool result = await controller?.getFlashStatus() ?? false;
+    bool result = await controller?.getFlashStatus() ?? false;
 
-      setState(() {
-        flashStatus = result;
-      });
-    } catch (error) {
-      log(error.toString());
-    }
+    setState(() {
+      flashStatus = result;
+    });
   }
 
   Future<void> copyToClipBoard(setter) async {
