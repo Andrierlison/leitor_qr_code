@@ -50,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Future _goToScan({required BuildContext context}) async {
     final hasPermission = await _verifyCameraPermission();
 
-    if (hasPermission) {
+    if (mounted && hasPermission) {
       return Navigator.of(context).push(
         MaterialPageRoute(builder: (context) => const QRScreen()),
       );
@@ -83,6 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             'Ok',
                             style: TextStyle(
                               fontSize: 18,
+                              color: customBlack,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -145,6 +146,34 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         );
       },
+    );
+  }
+
+  Widget _button({
+    required String label,
+    required void Function()? onPress,
+    required IconData iconName,
+  }) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 5),
+      width: MediaQuery.of(context).size.width / 1.5,
+      child: ElevatedButton(
+        style: const ButtonStyle(
+          backgroundColor: MaterialStatePropertyAll(customBlack),
+        ),
+        onPressed: onPress,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(iconName),
+              const SizedBox(width: 10),
+              Text(label, style: const TextStyle(fontSize: 18)),
+            ],
+          ),
+        ),
+      ),
     );
   }
 
