@@ -1,0 +1,14 @@
+{
+    "appTitle": "Leitor QR code",
+    "openReader": "Abrir leitor",
+    "openHistory": "Abrir histórico",
+    "yourOpinion": "Sua opinião é muito importante, deixe sua avaliação sobre o nosso app para ele continuar melhorando!",
+    "rate": "Avaliar",
+    "scanACode": "Escaneia um código",
+    "history": "Histórico",
+    "cameraRequest": "Precisamos de permissão de acesso a câmera para escanear o QR Code",
+    "cameraRequestDenied": "Sem permissão para acessar a câmera",
+    "noResults": "Sem resultados",
+    "copied": "Copiado",
+    "copy": "Copiar"
+}

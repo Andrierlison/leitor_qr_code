@@ -7,6 +7,7 @@ import 'package:leitor_qr_code/admob.dart';
 import 'package:leitor_qr_code/ui/global_styles.dart';
 import 'package:leitor_qr_code/ui/widgets/custom_button.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class QRScreen extends StatefulWidget {
   const QRScreen({Key? key}) : super(key: key);
@@ -70,7 +71,9 @@ class _QRViewScreenState extends State<QRScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       CustomButton(
-                        label: _isTextCopied ? 'Copiado!' : 'Copiar',
+                        label: _isTextCopied
+                            ? AppLocalizations.of(context).copied
+                            : AppLocalizations.of(context).copy,
                         iconName: Icons.copy,
                         onPressed: () {
                           copyToClipBoard(changer);
@@ -116,7 +119,9 @@ class _QRViewScreenState extends State<QRScreen> {
   void _onPermissionSet(BuildContext context, QRViewController ctrl, bool p) {
     if (!p) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Sem permissão para acessar a câmera')),
+        SnackBar(
+          content: Text(AppLocalizations.of(context).cameraRequestDenied),
+        ),
       );
     }
   }
@@ -210,7 +215,9 @@ class _QRViewScreenState extends State<QRScreen> {
                               : result!.code!,
                         ),
                         CustomButton(
-                          label: _isTextCopied ? 'Copiado!' : 'Copiar',
+                          label: _isTextCopied
+                              ? AppLocalizations.of(context).copied
+                              : AppLocalizations.of(context).copy,
                           onPressed: () => copyToClipBoard(setState),
                         )
                       ],
@@ -218,11 +225,9 @@ class _QRViewScreenState extends State<QRScreen> {
                   else
                     Container(
                       margin: const EdgeInsets.all(20),
-                      child: const Text(
-                        'Escanei um código',
-                        style: TextStyle(
-                          fontSize: 30,
-                        ),
+                      child: Text(
+                        AppLocalizations.of(context).scanACode,
+                        style: const TextStyle(fontSize: 30),
                       ),
                     ),
                   Row(

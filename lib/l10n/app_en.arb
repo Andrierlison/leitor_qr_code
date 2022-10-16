@@ -1,0 +1,14 @@
+{
+    "appTitle": "QR Code Scan",
+    "openReader": "Open scan",
+    "openHistory": "Open history",
+    "yourOpinion": "Your opinion is very important, leave your review about our app for it to keep improving!",
+    "rate": "Rate",
+    "scanACode": "Scan a code",
+    "history": "History",
+    "cameraRequest": "We need camera access permission to scan QR Code",
+    "cameraRequestDenied": "No permission to access the camera",
+    "noResults": "No results",
+    "copied": "Copied",
+    "copy": "Copy"
+}

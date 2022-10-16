@@ -6,6 +6,7 @@ import 'package:leitor_qr_code/ui/screens/qr_screen.dart';
 import 'package:leitor_qr_code/ui/widgets/custom_button.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -14,8 +15,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final String screenTitle = 'Leitor de QR code';
-
   BannerAd? _headerBanner;
 
   void _initScreen() async {
@@ -69,12 +68,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Wrap(
                   children: [
                     Container(
-                      margin: const EdgeInsets.all(10),
-                      child: const Text(
-                        'Precisamos de permissão de acesso a câmera para escanear o QR Code',
-                        style: TextStyle(
-                          fontSize: 18,
-                        ),
+                      margin: const EdgeInsets.all(2),
+                      child: Text(
+                        AppLocalizations.of(context).cameraRequest,
+                        style: const TextStyle(fontSize: 18),
                       ),
                     ),
                     Row(
@@ -113,10 +110,10 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 10),
-                child: const Text(
-                  'Sua opinião é muito importante, deixe sua avaliação sobre o nosso app para ele continuar melhorando!',
+                child: Text(
+                  AppLocalizations.of(context).yourOpinion,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
                     color: customBlack,
@@ -127,7 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CustomButton(
-                    label: 'Avaliar',
+                    label: AppLocalizations.of(context).rate,
                     iconName: Icons.shop_outlined,
                     onPressed: () async {
                       String url =
@@ -167,7 +164,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(screenTitle),
+        title: Text(AppLocalizations.of(context).appTitle),
         actions: [
           IconButton(
             onPressed: () => _rateModal(context: context),
@@ -176,27 +173,35 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
             flex: 2,
-            child: Row(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ElevatedButton(
-                  style: const ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll(customBlack),
-                  ),
-                  onPressed: () => _goToScan(context: context),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Icon(Icons.qr_code_outlined),
-                      SizedBox(width: 10),
-                      Text('Abrir leitor'),
-                    ],
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _button(
+                      iconName: Icons.qr_code_scanner_outlined,
+                      label: AppLocalizations.of(context).openReader,
+                      onPress: () => _goToScan(context: context),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _button(
+                      iconName: Icons.history,
+                      label: AppLocalizations.of(context).openHistory,
+                      onPress: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const HistoryScreen(),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
