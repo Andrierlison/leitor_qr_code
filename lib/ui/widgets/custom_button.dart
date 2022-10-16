@@ -32,7 +32,10 @@ class _CustomButtonState extends State<CustomButton> {
             if (widget.label.isNotEmpty) Text(widget.label),
             if (widget.label.isNotEmpty && widget.iconName != null)
               const SizedBox(width: 10),
-            if (widget.iconName != null) Icon(widget.iconName, size: 24)
+            if (widget.iconName != null)
+              Icon(
+                widget.iconName,
+              )
           ],
         ),
       ),
