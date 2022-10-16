@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:leitor_qr_code/admob.dart';
 import 'package:leitor_qr_code/ui/global_styles.dart';
+import 'package:leitor_qr_code/ui/screens/history_screen.dart';
 import 'package:leitor_qr_code/ui/screens/qr_screen.dart';
 import 'package:leitor_qr_code/ui/widgets/custom_button.dart';
 import 'package:permission_handler/permission_handler.dart';
