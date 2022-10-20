@@ -39,6 +39,7 @@ dependencies:
   path: ^1.8.2
   permission_handler: ^10.0.2
   qr_code_scanner: ^1.0.1
+  share_plus: ^6.0.0
   sqflite: ^2.1.0+1
   url_launcher: ^6.1.6
 

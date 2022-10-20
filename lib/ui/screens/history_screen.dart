@@ -9,6 +9,7 @@ import 'package:leitor_qr_code/data/repositories/get_history_repository_imp.dart
 import 'package:leitor_qr_code/domain/entities/history_entity.dart';
 import 'package:leitor_qr_code/domain/usecases/delete_history/delete_history_usecase_imp.dart';
 import 'package:leitor_qr_code/domain/usecases/get_history/get_history_usecase_imp.dart';
+import 'package:leitor_qr_code/infra/helpers/share.dart';
 import 'package:leitor_qr_code/ui/global_styles.dart';
 import 'package:leitor_qr_code/ui/screens/qr_screen.dart';
 import 'package:leitor_qr_code/ui/widgets/screen_background.dart';
@@ -62,6 +63,11 @@ class _HistoryScreenState extends State<HistoryScreen> {
     setState(() {});
   }
 
+  void _shareText({String text = ''}) {
+    ShareHelper shareHelper = ShareHelper();
+    shareHelper.text(text: text);
+  }
+
   Widget _historyItem({
     required int id,
     required String title,
@@ -97,6 +103,12 @@ class _HistoryScreenState extends State<HistoryScreen> {
               IconButton(
                 onPressed: () => _copyToClipboard(text: title),
                 icon: const Icon(Icons.copy),
+                splashRadius: 1,
+                visualDensity: VisualDensity.compact,
+              ),
+              IconButton(
+                onPressed: () => _shareText(text: title),
+                icon: const Icon(Icons.share),
                 splashRadius: 1,
                 visualDensity: VisualDensity.compact,
               ),
