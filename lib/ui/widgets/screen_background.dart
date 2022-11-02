@@ -36,8 +36,11 @@ class _ScreenBackgroundState extends State<ScreenBackground> {
         onRefresh: () async {
           if (widget.onRefresh != null) await widget.onRefresh!();
         },
-        child: ListView(
-          children: widget.children,
+        child: Container(
+          color: customWhite,
+          child: ListView(
+            children: widget.children,
+          ),
         ),
       ),
     );
