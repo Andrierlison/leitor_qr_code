@@ -14,27 +14,7 @@ void main() {
       showSemanticsDebugger: false,
       showPerformanceOverlay: false,
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        brightness: Brightness.light,
-        primaryColor: customBlack,
-        fontFamily: 'Roboto',
-        textTheme: const TextTheme(),
-        appBarTheme: const AppBarTheme(
-          color: customBlack,
-        ),
-        buttonTheme: const ButtonThemeData(
-          buttonColor: customBlack,
-        ),
-        iconTheme: const IconThemeData(
-          size: 24,
-          color: customBlack,
-        ),
-        pageTransitionsTheme: const PageTransitionsTheme(
-          builders: {
-            TargetPlatform.android: CupertinoPageTransitionsBuilder(),
-          },
-        ),
-      ),
+      theme: appTheme,
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
