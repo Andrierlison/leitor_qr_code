@@ -29,17 +29,19 @@ class _ScreenBackgroundState extends State<ScreenBackground> {
               title: Text(widget.appBarTitle),
               actions: widget.appBarActions,
             ),
-      body: RefreshIndicator(
-        color: customBlack,
-        notificationPredicate:
-            widget.onRefresh != null ? (_) => true : (_) => false,
-        onRefresh: () async {
-          if (widget.onRefresh != null) await widget.onRefresh!();
-        },
-        child: Container(
-          color: customWhite,
-          child: ListView(
-            children: widget.children,
+      body: SafeArea(
+        child: RefreshIndicator(
+          color: customBlack,
+          notificationPredicate:
+              widget.onRefresh != null ? (_) => true : (_) => false,
+          onRefresh: () async {
+            if (widget.onRefresh != null) await widget.onRefresh!();
+          },
+          child: Container(
+            color: customWhite,
+            child: ListView(
+              children: widget.children,
+            ),
           ),
         ),
       ),
