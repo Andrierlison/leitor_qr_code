@@ -10,5 +10,12 @@
     "cameraRequestDenied": "Sin permiso para acceder a la cámara.",
     "noResults": "No hay resultados",
     "copied": "Copiado",
-    "copy": "Copiar"
+    "copy": "Copiar",
+    "createCode": "Crear código",
+    "typeHereToShowTheCode": "Escriba aquí para mostrar el código QR",
+    "bar": "Bar",
+    "preview": "Avance",
+    "typesOfCode": "Tipos de código",
+    "savedAtDownloadsFolder": "Guardado en la carpeta de descargas",
+    "share": "Cuota"
 }

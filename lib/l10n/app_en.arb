@@ -10,5 +10,12 @@
     "cameraRequestDenied": "No permission to access the camera",
     "noResults": "No results",
     "copied": "Copied",
-    "copy": "Copy"
+    "copy": "Copy",
+    "createCode": "Create Code",
+    "typeHereToShowTheCode": "Type here to show the code",
+    "bar": "Bar",
+    "preview": "Preview",
+    "typesOfCode": "Types of code",
+    "savedAtDownloadsFolder": "Saved at downloads folder",
+    "share": "Share"
 }
