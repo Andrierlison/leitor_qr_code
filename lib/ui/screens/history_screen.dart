@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:leitor_qr_code/admob.dart';
 import 'package:leitor_qr_code/data/datasources/cache/delete_history_cache_datasource_imp.dart';
@@ -13,7 +14,6 @@ import 'package:leitor_qr_code/infra/helpers/share.dart';
 import 'package:leitor_qr_code/ui/global_styles.dart';
 import 'package:leitor_qr_code/ui/screens/qr_screen.dart';
 import 'package:leitor_qr_code/ui/widgets/screen_background.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HistoryScreen extends StatefulWidget {
   const HistoryScreen({Key? key}) : super(key: key);
@@ -74,18 +74,23 @@ class _HistoryScreenState extends State<HistoryScreen> {
     required String date,
   }) {
     return Container(
-      margin: const EdgeInsets.all(10),
+      margin: const EdgeInsets.symmetric(vertical: 14, horizontal: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                title,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
+              SizedBox(
+                width: MediaQuery.of(context).size.width / 2,
+                child: Text(
+                  title,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
                 ),
               ),
               Text(date, style: const TextStyle(fontSize: 14))
@@ -227,11 +232,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
           color: customWhite,
         ),
       ],
-      children: [
-        _mountList(),
-        if (_footerBanner != null)
-          Expanded(flex: 1, child: AdWidget(ad: _footerBanner!)),
-      ],
+      children: [_mountList()],
     );
   }
 }
