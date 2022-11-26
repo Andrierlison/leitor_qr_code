@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 const Color customBlack = Color(0xff333333);
 const Color customWhite = Color(0xfff1f1f1);
 const Color customGray = Color(0xffcccccc);
+const Color customGreen = Color(0xFF66BB6A);
 
 final ThemeData appTheme = ThemeData(
   appBarTheme: const AppBarTheme(color: customBlack),
