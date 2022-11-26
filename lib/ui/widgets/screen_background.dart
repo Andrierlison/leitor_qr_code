@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:leitor_qr_code/ui/global_styles.dart';
 
 class ScreenBackground extends StatefulWidget {

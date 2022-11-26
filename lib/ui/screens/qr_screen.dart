@@ -1,7 +1,17 @@
+// Dart imports:
 import 'dart:io';
+
+// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// Package imports:
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+// Project imports:
 import 'package:leitor_qr_code/admob.dart';
 import 'package:leitor_qr_code/data/datasources/cache/save_history_cache_datasource_imp.dart';
 import 'package:leitor_qr_code/data/repositories/save_history_repository_imp.dart';
@@ -9,9 +19,8 @@ import 'package:leitor_qr_code/domain/entities/history_entity.dart';
 import 'package:leitor_qr_code/domain/usecases/save_history/save_history_usecase_imp.dart';
 import 'package:leitor_qr_code/ui/global_styles.dart';
 import 'package:leitor_qr_code/ui/screens/history_screen.dart';
+import 'package:leitor_qr_code/ui/screens/home_screen.dart';
 import 'package:leitor_qr_code/ui/widgets/custom_button.dart';
-import 'package:qr_code_scanner/qr_code_scanner.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class QRScreen extends StatefulWidget {
   const QRScreen({Key? key}) : super(key: key);

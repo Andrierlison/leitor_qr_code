@@ -1,7 +1,12 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// Package imports:
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+
+// Project imports:
 import 'package:leitor_qr_code/admob.dart';
 import 'package:leitor_qr_code/data/datasources/cache/delete_history_cache_datasource_imp.dart';
 import 'package:leitor_qr_code/data/datasources/cache/get_history_cache_datasource_imp.dart';

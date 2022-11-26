@@ -1,7 +1,12 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:leitor_qr_code/data/datasources/delete_history_datasource.dart';
+
+// Package imports:
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+
+// Project imports:
+import 'package:leitor_qr_code/data/datasources/delete_history_datasource.dart';
 
 class DeleteHistoryCacheDataSourceImp implements DeleteHistoryDataSource {
   Future<Database> _initDB() async {

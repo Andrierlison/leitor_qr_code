@@ -1,3 +1,4 @@
+// Project imports:
 import 'package:leitor_qr_code/domain/entities/history_entity.dart';
 import 'package:leitor_qr_code/domain/repositories/save_history_repository.dart';
 import 'package:leitor_qr_code/domain/usecases/save_history/save_history_usecase.dart';

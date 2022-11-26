@@ -1,13 +1,23 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+// Project imports:
 import 'package:leitor_qr_code/admob.dart';
 import 'package:leitor_qr_code/ui/global_styles.dart';
+import 'package:leitor_qr_code/ui/screens/create_bar_code_screen.dart';
+import 'package:leitor_qr_code/ui/screens/create_pix_code_screen.dart';
+import 'package:leitor_qr_code/ui/screens/create_qr_code_screen.dart';
+import 'package:leitor_qr_code/ui/screens/create_wifi_code_screen.dart';
 import 'package:leitor_qr_code/ui/screens/history_screen.dart';
 import 'package:leitor_qr_code/ui/screens/qr_screen.dart';
 import 'package:leitor_qr_code/ui/widgets/custom_button.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:leitor_qr_code/ui/widgets/custom_modal.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);

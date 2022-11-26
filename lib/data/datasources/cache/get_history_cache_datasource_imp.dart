@@ -1,8 +1,13 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:leitor_qr_code/data/datasources/get_history_datasource.dart';
-import 'package:leitor_qr_code/domain/entities/history_entity.dart';
+
+// Package imports:
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+
+// Project imports:
+import 'package:leitor_qr_code/data/datasources/get_history_datasource.dart';
+import 'package:leitor_qr_code/domain/entities/history_entity.dart';
 
 class GetHistoryCacheDataSourceImp implements GetHistoryDataSource {
   Future<Database> _initDB() async {
