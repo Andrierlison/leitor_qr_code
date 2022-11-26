@@ -22,8 +22,12 @@ class HistoryEntity {
   }
 
   String getDateFormated() {
-    final DateFormat formatter = DateFormat('HH:mm dd/MM/yyyy');
-    final String result = formatter.format(DateTime.parse(dateInsert));
-    return result;
+    try {
+      final DateFormat formatter = DateFormat('HH:mm dd/MM/yyyy');
+      final String result = formatter.format(DateTime.parse(dateInsert));
+      return result;
+    } catch (error) {
+      return '';
+    }
   }
 }
