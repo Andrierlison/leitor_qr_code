@@ -6,6 +6,8 @@ const Color customWhite = Color(0xfff1f1f1);
 const Color customGray = Color(0xffcccccc);
 const Color customGreen = Color(0xFF66BB6A);
 
+final BorderRadiusGeometry customBorderRadius = BorderRadius.circular(8);
+
 final ThemeData appTheme = ThemeData(
   appBarTheme: const AppBarTheme(color: customBlack),
   brightness: Brightness.light,
