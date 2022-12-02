@@ -10,14 +10,7 @@ import 'package:url_launcher/url_launcher.dart';
 // Project imports:
 import 'package:leitor_qr_code/admob.dart';
 import 'package:leitor_qr_code/ui/global_styles.dart';
-import 'package:leitor_qr_code/ui/screens/create_bar_code_screen.dart';
-import 'package:leitor_qr_code/ui/screens/create_pix_code_screen.dart';
-import 'package:leitor_qr_code/ui/screens/create_qr_code_screen.dart';
-import 'package:leitor_qr_code/ui/screens/create_wifi_code_screen.dart';
-import 'package:leitor_qr_code/ui/screens/history_screen.dart';
-import 'package:leitor_qr_code/ui/screens/qr_screen.dart';
 import 'package:leitor_qr_code/ui/widgets/custom_button.dart';
-import 'package:leitor_qr_code/ui/widgets/custom_modal.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -62,9 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final hasPermission = await _verifyCameraPermission();
 
     if (mounted && hasPermission) {
-      return Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => const QRScreen()),
-      );
+      return Navigator.of(context).pushNamed('/scan_code');
     } else {
       return showDialog(
         context: context,
@@ -188,6 +179,31 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  Widget _createShortcuts({
+    required IconData iconName,
+    required String label,
+    required String routeName,
+  }) {
+    return Container(
+      width: ((MediaQuery.of(context).size.width / 1.5 + 10) / 2),
+      padding: const EdgeInsets.all(6),
+      child: ElevatedButton(
+        onPressed: () => Navigator.pushNamed(context, routeName),
+        style: const ButtonStyle(
+          backgroundColor: MaterialStatePropertyAll(customBlack),
+          padding: MaterialStatePropertyAll(EdgeInsets.all(10)),
+        ),
+        child: Column(
+          children: [
+            Icon(iconName),
+            const SizedBox(height: 10),
+            Text(label),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   void initState() {
     _initScreen();
@@ -235,11 +251,24 @@ class _HomeScreenState extends State<HomeScreen> {
                     _button(
                       iconName: Icons.history,
                       label: AppLocalizations.of(context).openHistory,
-                      onPress: () => Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const HistoryScreen(),
-                        ),
+                      onPress: () => Navigator.of(context).pushNamed(
+                        '/history',
                       ),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _createShortcuts(
+                      iconName: Icons.text_fields_outlined,
+                      label: '${AppLocalizations.of(context).text} / Link',
+                      routeName: '/create/text',
+                    ),
+                    _createShortcuts(
+                      iconName: Icons.pix_outlined,
+                      label: 'Pix',
+                      routeName: '/create/pix',
                     ),
                   ],
                 ),
