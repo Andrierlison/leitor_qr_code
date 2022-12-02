@@ -31,6 +31,7 @@ Future<void> main() async {
         showSemanticsDebugger: false,
         showPerformanceOverlay: false,
         debugShowCheckedModeBanner: false,
+        debugShowMaterialGrid: false,
         theme: appTheme,
         initialRoute: '/',
         routes: screensRoutes,
