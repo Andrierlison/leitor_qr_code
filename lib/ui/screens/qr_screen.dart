@@ -219,6 +219,7 @@ class _QRViewScreenState extends State<QRScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text(AppLocalizations.of(context).appTitle)),
       body: Column(
         children: <Widget>[
           Expanded(flex: 4, child: _buildQrView(context)),
