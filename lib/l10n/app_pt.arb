@@ -8,6 +8,8 @@
     "history": "Histórico",
     "cameraRequest": "Precisamos de permissão de acesso a câmera para escanear o QR Code",
     "cameraRequestDenied": "Sem permissão para acessar a câmera",
+    "storageRequest": "Precisamos de permissão de acesso ao armazenamento para salvar o QR Code",
+    "storageRequestDenied": "Sem permissão para acessar a armazenamento",
     "noResults": "Sem resultados",
     "copied": "Copiado",
     "copy": "Copiar",
@@ -17,5 +19,10 @@
     "preview": "Pre-visualização",
     "typesOfCode": "Tipos de código",
     "savedAtDownloadsFolder": "Salvo na pasta downloads",
-    "share": "Compartilhar"
+    "share": "Compartilhar",
+    "text": "Texto",
+    "bars": "Barras",
+    "showText": "Mostrar texto",
+    "showBorders": "Mostrar bordas",
+    "addADescription": "Adicione uma descrição"
 }

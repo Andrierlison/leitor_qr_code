@@ -8,6 +8,8 @@
     "history": "History",
     "cameraRequest": "We need camera access permission to scan QR Code",
     "cameraRequestDenied": "No permission to access the camera",
+    "storageRequest": "We need storage access permission to scan QR Code",
+    "storageRequestDenied": "No permission to access the storage",
     "noResults": "No results",
     "copied": "Copied",
     "copy": "Copy",
@@ -17,5 +19,10 @@
     "preview": "Preview",
     "typesOfCode": "Types of code",
     "savedAtDownloadsFolder": "Saved at downloads folder",
-    "share": "Share"
+    "share": "Share",
+    "text": "Text",
+    "bars": "Bars",
+    "showText": "Show text",
+    "showBorders": "Show borders",
+    "addADescription": "Add a description"
 }

@@ -8,6 +8,8 @@
     "history": "Histórico",
     "cameraRequest": "Necesitamos permiso de acceso a la cámara para escanear el código QR",
     "cameraRequestDenied": "Sin permiso para acceder a la cámara.",
+    "storageRequest": "Necesitamos permiso de acceso a la almacenamiento",
+    "storageRequestDenied": "Sin permiso para acceder a la almacenamiento.",
     "noResults": "No hay resultados",
     "copied": "Copiado",
     "copy": "Copiar",
@@ -17,5 +19,10 @@
     "preview": "Avance",
     "typesOfCode": "Tipos de código",
     "savedAtDownloadsFolder": "Guardado en la carpeta de descargas",
-    "share": "Cuota"
+    "share": "Cuota",
+    "text": "Texto",
+    "bars": "Barras",
+    "showText": "Mostrar texto",
+    "showBorders": "Mostrar bordes",
+    "addADescription": "Añadir una descripción"
 }
