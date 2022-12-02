@@ -11,10 +11,7 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 // Project imports:
 import 'package:leitor_qr_code/screens_routes.dart';
 import 'package:leitor_qr_code/sentry.dart';
-// Project imports:
 import 'package:leitor_qr_code/ui/global_styles.dart';
-import 'package:leitor_qr_code/ui/screens/home_screen.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

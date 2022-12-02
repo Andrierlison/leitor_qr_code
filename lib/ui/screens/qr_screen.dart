@@ -18,8 +18,6 @@ import 'package:leitor_qr_code/data/repositories/save_history_repository_imp.dar
 import 'package:leitor_qr_code/domain/entities/history_entity.dart';
 import 'package:leitor_qr_code/domain/usecases/save_history/save_history_usecase_imp.dart';
 import 'package:leitor_qr_code/ui/global_styles.dart';
-import 'package:leitor_qr_code/ui/screens/history_screen.dart';
-import 'package:leitor_qr_code/ui/screens/home_screen.dart';
 import 'package:leitor_qr_code/ui/widgets/custom_button.dart';
 
 class QRScreen extends StatefulWidget {
@@ -50,7 +48,7 @@ class _QRViewScreenState extends State<QRScreen> {
       overlay: QrScannerOverlayShape(
         borderColor: Colors.red,
         borderRadius: 10,
-        borderLength: 30,
+        borderLength: 10,
         borderWidth: 10,
         cutOutSize: scanArea,
       ),
@@ -295,11 +293,14 @@ class _QRViewScreenState extends State<QRScreen> {
                         label: '',
                         iconName: Icons.history,
                         onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const HistoryScreen(),
-                            ),
+                          controller!.dispose();
+
+                          Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            '/',
+                            (route) => false,
                           );
+                          Navigator.of(context).pushNamed('/history');
                         },
                       ),
                     ],

@@ -17,7 +17,6 @@ import 'package:leitor_qr_code/domain/usecases/delete_history/delete_history_use
 import 'package:leitor_qr_code/domain/usecases/get_history/get_history_usecase_imp.dart';
 import 'package:leitor_qr_code/infra/helpers/share.dart';
 import 'package:leitor_qr_code/ui/global_styles.dart';
-import 'package:leitor_qr_code/ui/screens/qr_screen.dart';
 import 'package:leitor_qr_code/ui/widgets/screen_background.dart';
 
 class HistoryScreen extends StatefulWidget {
@@ -227,11 +226,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
       appBarActions: [
         IconButton(
           onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => const QRScreen(),
-              ),
-            );
+            Navigator.of(context).pushNamed('/scan_code');
           },
           icon: const Icon(Icons.qr_code_scanner_outlined),
           color: customWhite,
