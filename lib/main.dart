@@ -46,7 +46,6 @@ Future<void> main() async {
           Locale('es', ''),
           Locale('pt', ''),
         ],
-        home: const HomeScreen(),
       ),
     ),
   );
