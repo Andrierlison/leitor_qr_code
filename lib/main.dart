@@ -6,6 +6,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+
+// Project imports:
+import 'package:leitor_qr_code/screens_routes.dart';
 import 'package:leitor_qr_code/sentry.dart';
 // Project imports:
 import 'package:leitor_qr_code/ui/global_styles.dart';
@@ -31,6 +35,8 @@ Future<void> main() async {
         showPerformanceOverlay: false,
         debugShowCheckedModeBanner: false,
         theme: appTheme,
+        initialRoute: '/',
+        routes: screensRoutes,
         localizationsDelegates: const [
           AppLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
