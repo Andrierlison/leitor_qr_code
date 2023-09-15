@@ -24,5 +24,6 @@
     "bars": "Bars",
     "showText": "Show text",
     "showBorders": "Show borders",
-    "addADescription": "Add a description"
+    "addADescription": "Add a description",
+    "scanWifi": "Scan Wi-Fi"
 }
