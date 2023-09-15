@@ -83,8 +83,8 @@ class _QRViewScreenState extends State<QRScreen> {
                     children: [
                       CustomButton(
                         label: _isTextCopied
-                            ? AppLocalizations.of(context).copied
-                            : AppLocalizations.of(context).copy,
+                            ? AppLocalizations.of(context)!.copied
+                            : AppLocalizations.of(context)!.copy,
                         iconName: Icons.copy,
                         onPressed: () {
                           copyToClipBoard(changer);

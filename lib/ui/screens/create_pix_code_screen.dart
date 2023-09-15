@@ -51,7 +51,7 @@ class _CreatePixCodeScreenState extends State<CreatePixCodeScreen> {
         ),
         Center(
           child: Text(
-            AppLocalizations.of(context).storageRequest,
+            AppLocalizations.of(context)!.storageRequest,
             style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ),

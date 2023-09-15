@@ -39,7 +39,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
           content: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(AppLocalizations.of(context).copied),
+              Text(AppLocalizations.of(context)!.copied),
               TextButton(
                 onPressed: () {
                   ScaffoldMessenger.of(context).hideCurrentSnackBar();

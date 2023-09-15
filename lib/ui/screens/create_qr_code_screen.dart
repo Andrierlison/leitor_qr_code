@@ -42,7 +42,7 @@ class _CreateQRCodeScreenState extends State<CreateQRCodeScreen> {
 
     await customModal.show(
       context: context,
-      title: AppLocalizations.of(context).preview,
+      title: AppLocalizations.of(context)!.preview,
       children: [
         RepaintBoundary(
           key: _codeGeneratedKey,
